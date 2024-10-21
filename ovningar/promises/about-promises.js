@@ -77,4 +77,4 @@ const res = mainWithOldFSButWithPromises()
 
 // Fetch utan async / await
 
-const data = await fetch("url").then((res) => res.json());
+//const data = fetch("url").then((res) => res.json());
