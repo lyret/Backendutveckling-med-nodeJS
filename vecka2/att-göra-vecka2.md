@@ -23,9 +23,9 @@
 
 **Installera och använda paket**
 
-- [ ] Varför finns det så många olika paket?
-- [ ] Hur avgör man vilka paket man ska använda?
-- [ ] Säkerhetstänk kring moduler
+- [x] Varför finns det så många olika paket?
+- [x] Hur avgör man vilka paket man ska använda?
+- [x] Säkerhetstänk kring moduler
 
 **NodeJS**
 
@@ -33,9 +33,9 @@
 - [x] Typescript i NodeJS
 - [x] ESBuild
 - [x] Bygga en enkel server i NodeJS och använda portar
-- [-] Introduktion till paketet Express JS, dess designmönster och tankesätt
+- [x] Introduktion till paketet Express JS, dess designmönster och tankesätt
 
 **Egenstudier...**
 
 - [x] Ge ut läsmaterial om REST
-- [ ] Ge ut läsmaterial och övningar för NodeJS och Express
+- [x] Ge ut läsmaterial och övningar för NodeJS och Express
