@@ -1,5 +1,5 @@
 import express from "express";
-import { createResourceRouter } from "./events-routes.js";
+import { createResourceRouter } from "./router";
 
 const port = 3000;
 const server = express();

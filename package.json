@@ -1,6 +1,10 @@
 {
 	"name": "backendutveckling",
 	"type": "module",
+	"scripts": {
+		"dev": "npm run build && node ./ovningar/express-example/res/index.js",
+		"build": "npx esbuild ./ovningar/express-example/index.ts --outfile=./ovningar/express-example/res/index.js --bundle --platform=node --packages=external --format=esm"
+	},
 	"dependencies": {
 		"@types/express": "^5.0.0",
 		"@types/node": "^22.7.7",

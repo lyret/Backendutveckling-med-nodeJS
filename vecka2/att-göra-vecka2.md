@@ -29,13 +29,13 @@
 
 **NodeJS**
 
-- [ ] Import / Export och ESM
-- [ ] Typescript i NodeJS
-- [ ] ESBuild
+- [x] Import / Export och ESM
+- [x] Typescript i NodeJS
+- [x] ESBuild
 - [x] Bygga en enkel server i NodeJS och använda portar
 - [-] Introduktion till paketet Express JS, dess designmönster och tankesätt
 
 **Egenstudier...**
 
-- [ ] Ge ut läsmaterial om REST
+- [x] Ge ut läsmaterial om REST
 - [ ] Ge ut läsmaterial och övningar för NodeJS och Express

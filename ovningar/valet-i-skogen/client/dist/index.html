@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+	<title>Valet i Skogen</title>
+</head>
+<body>
+	<h1>Animals:</h1>
+	<div id="list"></div>
+	<script>
+		fetch("./api/animals")
+			.then((res) => res.json())
+			.then((animals) => {
+				for (const animal of animals) {
+					const title = document.createElement("h2");
+					const img = document.createElement("img");
+					title.innerHTML = animal.name;
+					img.src = animal.image;
+
+					const list = document.querySelector("#list");
+					list.appendChild(title);
+					list.appendChild(img);
+				}
+			});
+	</script>
+</body>

@@ -6,6 +6,7 @@ const resources = {
 	organizers: [],
 };
 
+/** Returns a Express router for a REST resource of the given name */
 export function createResourceRouter(resourceName, requiresApiKey) {
 	const router = express.Router();
 
@@ -17,9 +18,8 @@ export function createResourceRouter(resourceName, requiresApiKey) {
 				throw { status: 401 };
 			} else if (req.query.apiKey != "bananget") {
 				throw { status: 403 };
-			} else {
-				next();
 			}
+			next();
 		});
 	}
 
@@ -53,20 +53,22 @@ export function createResourceRouter(resourceName, requiresApiKey) {
 	router.patch("/:id", (req, res) => {
 		const id = Number(req.params.id);
 
-		events[id] = {
-			...events[id],
+		resources[resourceName][id] = {
+			...resources[resourceName][id],
 			...req.body,
 		};
 
 		res.status(200);
-		res.send(events);
+		res.send(resources[resourceName]);
 	});
 	router.delete("/:id", (req, res) => {
 		const id = Number(req.params.id);
-		events[id] = undefined;
-		events = events.filter((event) => !!event);
+		resources[resourceName][id] = undefined;
+		resources[resourceName] = resources[resourceName].filter(
+			(event) => !!event
+		);
 		res.status(200);
-		res.send(events);
+		res.send(resources[resourceName]);
 	});
 
 	router.use((err, req, res, next) => {
