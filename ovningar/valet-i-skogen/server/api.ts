@@ -1,24 +1,16 @@
+import Mongoose from "mongoose";
 import Express from "express";
-import { AnimalModel } from "./database";
-
+import { animalRouter } from "./resources/animals";
+import { electionRouter } from "./resources/elections";
+import { voteRouter } from "./resources/votes";
 export const apiRouter = Express.Router();
 
 apiRouter.use(Express.json());
-
-apiRouter.get("/animals", async (req, res) => {
-	const animals = await AnimalModel.find().exec();
-	res.send(animals);
+apiRouter.use((req, res, next) => {
+	Mongoose.connect("mongodb://localhost/");
+	next();
 });
 
-apiRouter.post("/animals", async (req, res) => {
-	const newAnimal = new AnimalModel(req.body);
-
-	try {
-		await newAnimal.save();
-		res.send(newAnimal);
-	} catch (err) {
-		console.log("Save to database failed");
-		res.status(500);
-		res.send({});
-	}
-});
+apiRouter.use("/animals", animalRouter);
+apiRouter.use("/elections", electionRouter);
+apiRouter.use("/votes", voteRouter);

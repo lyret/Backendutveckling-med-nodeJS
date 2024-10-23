@@ -25,26 +25,35 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var api_exports = {};
-__export(api_exports, {
-  apiRouter: () => apiRouter
+var animals_exports = {};
+__export(animals_exports, {
+  animalRouter: () => animalRouter
 });
-module.exports = __toCommonJS(api_exports);
-var import_mongoose = __toESM(require("mongoose"));
+module.exports = __toCommonJS(animals_exports);
 var import_express = __toESM(require("express"));
-var import_animals = require("./resources/animals");
-var import_election = require("./resources/election");
-var import_vote = require("./resources/vote");
-const apiRouter = import_express.default.Router();
-apiRouter.use(import_express.default.json());
-apiRouter.use((req, res, next) => {
-  import_mongoose.default.connect("mongodb://localhost/");
-  next();
+var import_mongoose = __toESM(require("mongoose"));
+const schema = new import_mongoose.default.Schema({
+  name: { type: String, required: true },
+  image: { type: String, required: true }
 });
-apiRouter.use("/animals", import_animals.animalRouter);
-apiRouter.use("/elections", import_election.electionRouter);
-apiRouter.use("/votes", import_vote.voteRouter);
+const AnimalModel = import_mongoose.default.model("animal", schema);
+const animalRouter = import_express.default.Router();
+animalRouter.get("/", async (req, res) => {
+  const animals = await AnimalModel.find().exec();
+  res.send(animals);
+});
+animalRouter.post("/", async (req, res) => {
+  const newAnimal = new AnimalModel(req.body);
+  try {
+    await newAnimal.save();
+    res.send(newAnimal);
+  } catch (err) {
+    console.log("Save to database failed");
+    res.status(500);
+    res.send({});
+  }
+});
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  apiRouter
+  animalRouter
 });
